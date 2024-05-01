@@ -5,8 +5,8 @@ const jobSlice = createSlice({
     initialState: {
         jobDetails: []
     },
+    // redux reducer functions addJob
     reducers: {
-
         addJob: (state, action) => {
             const { payload } = action;
             console.log('payload', payload);
@@ -18,8 +18,6 @@ const jobSlice = createSlice({
                 jobDetails: [...state.jobDetails, ...payload],
             };
         },
-
-
     }
 
 })

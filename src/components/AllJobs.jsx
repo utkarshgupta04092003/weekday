@@ -25,33 +25,44 @@ const useStyles = makeStyles((theme) => ({
 
 const AllJobs = () => {
     const allJobs = useSelector((state) => state.jobs.jobDetails);
-    console.log(allJobs)
     const classes = useStyles();
 
     const [filterData, setFilterData] = useState([]);
+    const [currFilter, setCurrFilter] = useState({});
 
     useEffect(()=>{
-        console.log('effect')
-        setFilterData(allJobs);
-    }, [allJobs]);
+        udpateFilterData();
+    }, [allJobs, currFilter]);
     
-    const onFilter = (filters) => {
-        console.log('hey');
+
+    // currently there are only 5 filters applicable are other 2 filter values are not provided in the api response that is company nanme and tech stack
+    // if location type is remote then only show remote job otherwise check the for the preferred location
+    const udpateFilterData = () => {
+        console.log(currFilter)
         const filteredJob = allJobs.filter((job)=>{
-            if(job.location.toLowerCase().includes(filters.location)){
+            if((currFilter.remote.toLowerCase() == "remote" ? job.location.toLowerCase().includes('remote') 
+            : job.location.toLowerCase().includes(currFilter.location.toLowerCase()) )
+            && job.jobRole.toLowerCase().includes(currFilter.role.toLowerCase())
+            && (currFilter.minBasePay == '' || job.minJdSalary >= parseInt(currFilter.minBasePay))
+            && (currFilter.minExperience == '' || job.minExp == parseInt(currFilter.minExperience))
+            ){
                 return job;
             }
         })
         setFilterData(filteredJob);
     }
-
+    
+    const handleFilter = (filter) =>{
+        setCurrFilter(filter);
+    }
+    
     return (
         <div className={classes.root}>
-            <Filters onFilter={onFilter} />
+            <Filters handleFilter={handleFilter} />
 
             <Grid container spacing={3}>
                 {filterData.map((job, index) => (
-                    <Grid item xs={12} sm={6} md={4} key={job.jdUid}>
+                    <Grid item xs={12} sm={6} md={4} key={index}>
                         <Card className={classes.card}>
                             <JobCard job={job} />
                         </Card>

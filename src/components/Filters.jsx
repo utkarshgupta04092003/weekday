@@ -11,16 +11,17 @@ const useStyles = makeStyles((theme) => ({
         '& > *': {
             margin: theme.spacing(1),
         },
+        flexWrap: 'wrap'
     },
 }));
 
-const Filters = ({ onFilter }) => {
+const Filters = ({ handleFilter }) => {
     const classes = useStyles();
     const [filters, setFilters] = useState({
         minExperience: '',
         companyName: '',
         location: '',
-        remote: 'remote',
+        remote: '',
         techStack: '',
         role: '',
         minBasePay: '',
@@ -28,7 +29,7 @@ const Filters = ({ onFilter }) => {
 
     useEffect(() => {
         const timerId = setTimeout(() => {
-            onFilter(filters);
+            handleFilter(filters);
         }, 300);
 
         return () => {
@@ -47,7 +48,7 @@ const Filters = ({ onFilter }) => {
     return (
         <div className={classes.root}>
 
-            {/* experience filter */}
+            {/* min experience filter */}
             <Select style={{border: '1px solid lightgray',borderRadius: '5px', padding: '0.7rem'}}
                 name="minExperience"
                 value={filters.minExperience}
@@ -55,10 +56,18 @@ const Filters = ({ onFilter }) => {
                 displayEmpty
             >
                 <MenuItem value="">Min Experience</MenuItem>
-                <MenuItem value="0-1">0-1 years</MenuItem>
-                <MenuItem value="1-3">1-3 years</MenuItem>
-                <MenuItem value="3-5">3-5 years</MenuItem>
-                <MenuItem value="5+">5+ years</MenuItem>
+                <MenuItem value="0">0</MenuItem>
+                <MenuItem value="1">1</MenuItem>
+                <MenuItem value="2">2</MenuItem>
+                <MenuItem value="3">3</MenuItem>
+                <MenuItem value="4">4</MenuItem>
+                <MenuItem value="5">5</MenuItem>
+                <MenuItem value="6">6</MenuItem>
+                <MenuItem value="7">7</MenuItem>
+                <MenuItem value="8">8</MenuItem>
+                <MenuItem value="9">9</MenuItem>
+                <MenuItem value="10">10</MenuItem>
+
             </Select>
 
             {/* remote filter */}
@@ -68,8 +77,9 @@ const Filters = ({ onFilter }) => {
                 onChange={handleChange}
                 displayEmpty
             >
+                <MenuItem value="">Location mode</MenuItem>
+                <MenuItem value="onsite">On Site</MenuItem>
                 <MenuItem value="remote">Remote</MenuItem>
-                <MenuItem value="onsite">on-site</MenuItem>
             </Select>
 
             {/* job role */}
@@ -98,7 +108,16 @@ const Filters = ({ onFilter }) => {
                 variant="outlined"
                 value={filters.companyName}
                 onChange={handleChange}
-            />
+            /> 
+            
+            {/* min pay */}
+            <TextField
+            name="minBasePay"
+            label="Min Base Pay"
+            variant="outlined"
+            value={filters.minBasePay}
+            onChange={handleChange}
+        />
             {/* Other select dropdowns for each filter */}
         </div>
     );

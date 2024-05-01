@@ -67,7 +67,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         opacity: '0.7',
         background: 'white',
-        // border: '2px solid red',
         paddingTop: '2rem',
         position: 'relative',
         top: '-2.2rem',
@@ -108,8 +107,7 @@ export default function JobCard({ job }) {
             <Box>
 
                 <Typography variant="subtitle3" color="textSecondary" className={classes.postedDate}>
-                    ⌛
-                    Posted 3 days ago
+                    ⌛Posted 3 days ago
                 </Typography>
             </Box>
 
@@ -133,17 +131,19 @@ export default function JobCard({ job }) {
 
             </Box>
             <Box className={classes.salary}>
-                <Typography variant='p'>Estimated Salary: 18-35 LPA ✅</Typography>
+                <Typography variant='p'>Estimated Salary: {job?.minJdSalary}-{job?.maxJdSalary} LPA ✅</Typography>
             </Box>
             <Box className={classes.jobDetails}>
                 <Typography variant='p' className={classes.about}>About Company</Typography>
                 <Typography variant='p' className={classes.aboutus}>About us</Typography>
-                <Typography variant='p'>{job.jobDetailsFromCompany.substring(0, 500)}</Typography>
+                <Typography variant='p'>{job?.jobDetailsFromCompany.substring(0, 500)}</Typography>
                 <Typography variant='p' className={classes.viewjob}>view job</Typography>
             </Box>
+
+            
             <Box>
                 <Typography variant='p' className={classes.salary}>Minimum Experience: </Typography>
-                <Typography variant='p' className={classes.salary}>2 years</Typography>
+                <Typography variant='p' className={classes.salary}>{job.minExp ? job.minExp : "0"} years</Typography>
 
             </Box>
             <Box>

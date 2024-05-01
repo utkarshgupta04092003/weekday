@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { addJob } from '../redux/jobSlice';
+import AllJobs from '../components/AllJobs';
 export default function App() {
     const dispatch = useDispatch();
 
@@ -46,11 +47,8 @@ export default function App() {
     return (
         <div className="my-2">
             
-            <ul>
-                {data.map((d, index)=>(
-                    <li key={index}>{d?.jdUid}</li>
-                ))}
-            </ul>
+            <AllJobs/>
+
             <button onClick={()=>dispatch(addJob(data))}>click</button>
         </div>
     );

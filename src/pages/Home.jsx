@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addJob } from '../redux/jobSlice';
 import AllJobs from '../components/AllJobs';
+import ContentBox from '../components/ContentBox';
 export default function App() {
     const dispatch = useDispatch();
 
@@ -48,6 +49,7 @@ export default function App() {
         <div className="my-2">
             
             <AllJobs/>
+            {/* <ContentBox/> */}
 
             <button onClick={()=>dispatch(addJob(data))}>click</button>
         </div>

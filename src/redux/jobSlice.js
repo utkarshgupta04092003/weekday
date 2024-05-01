@@ -14,7 +14,7 @@ const jobSlice = createSlice({
                 return state;
             }
             return {
-                ...state,
+                // ...state,
                 jobDetails: [...state.jobDetails, ...payload],
             };
         },

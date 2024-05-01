@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 
 import { useSelector } from 'react-redux';
 import JobCard from './JobCard';
+import Filters from './Filters';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,10 +28,29 @@ const AllJobs = () => {
     console.log(allJobs)
     const classes = useStyles();
 
+    const [filterData, setFilterData] = useState([]);
+
+    useEffect(()=>{
+        console.log('effect')
+        setFilterData(allJobs);
+    }, [allJobs]);
+    
+    const onFilter = (filters) => {
+        console.log('hey');
+        const filteredJob = allJobs.filter((job)=>{
+            if(job.location.toLowerCase().includes(filters.location)){
+                return job;
+            }
+        })
+        setFilterData(filteredJob);
+    }
+
     return (
         <div className={classes.root}>
+            <Filters onFilter={onFilter} />
+
             <Grid container spacing={3}>
-                {allJobs.map((job, index) => (
+                {filterData.map((job, index) => (
                     <Grid item xs={12} sm={6} md={4} key={job.jdUid}>
                         <Card className={classes.card}>
                             <JobCard job={job} />

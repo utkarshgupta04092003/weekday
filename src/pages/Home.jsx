@@ -5,14 +5,12 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addJob } from '../redux/jobSlice';
 import AllJobs from '../components/AllJobs';
-import ContentBox from '../components/ContentBox';
 export default function App() {
     const dispatch = useDispatch();
 
-    const [data, setData] = useState([]);
     useEffect(() => {
-
         const fetchData = () => {
+            console.log('fetch called');
             const myHeaders = new Headers();
             myHeaders.append("limit", "10");
             myHeaders.append("offset", "0");
@@ -35,23 +33,21 @@ export default function App() {
                 .then((result) =>{
                     dispatch(addJob(result.jdList))
                     console.log(result)
-                    setData(result.jdList)
+                    // setData(result.jdList)
                 }
                 )
                 .catch((error) => console.error(error));
         }
-
         fetchData();
-
     }, []);
+
+
 
     return (
         <div className="my-2">
             
             <AllJobs/>
-            {/* <ContentBox/> */}
-
-            <button onClick={()=>dispatch(addJob(data))}>click</button>
+           
         </div>
     );
 }

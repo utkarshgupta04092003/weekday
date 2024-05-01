@@ -14,6 +14,9 @@ This is a simple React application that demonstrates infinite scrolling function
 ![image](https://github.com/utkarshgupta04092003/weekday/assets/63789702/566910ee-5729-4134-ac22-b582170000e2)
 
 
+## wanna try
+Try without download locally: [https://weekdayassign.netlify.app/](https://weekdayassign.netlify.app/)
+Note: If something not work properly, please try this locally.
 ## Installation
 
 Follow these steps to set up the project locally:

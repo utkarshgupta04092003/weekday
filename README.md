@@ -13,7 +13,18 @@ This is a simple React application that demonstrates infinite scrolling function
 
 ![image](https://github.com/utkarshgupta04092003/weekday/assets/63789702/566910ee-5729-4134-ac22-b582170000e2)
 
+## Features
 
+- Min experience filter
+- Company name filter
+- Location filter
+- Remote/on-site filter
+- Tech stack filter
+- Role filter
+- Min base pay filter
+- Infinite Scroll
+
+  
 ## wanna try
 Try without download locally: [https://weekdayassign.netlify.app/](https://weekdayassign.netlify.app/)
 Note: If something not work properly, please try this locally.
